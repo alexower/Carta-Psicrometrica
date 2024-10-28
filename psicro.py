@@ -51,6 +51,15 @@ def razonDehumedad(pv, pvs, p_atm):
     ws = (0.622)* pvs/(p_atm - pvs)
     return w, ws
 
+def razonDehumedadSaturada(pvs, p_atm):
+    ws = (0.622)* pvs/(p_atm - pvs)
+    return ws
+
+#formula para graficar Tbh
+def TG(yasat,calorLa,tw):
+    Tg = ((yasat*calorLa)/0.227) + tw
+    return Tg
+
 def humedad_especifica(temp, hr):
     temp = temp + 273.15
     psv = PresionVaporSaturada(temp)
@@ -86,6 +95,10 @@ def PuntoDeRocio(temp, pv):
 def eltalpia(tbs,w):
     h =  1.006*tbs + w*(2501 + 1.805*tbs) # centigrados
     return h
+
+def TBS(Ve,Ra,w,patm):
+    Tbs = ((patm * Ve) / (Ra * (1 + 1.6078 * w))) - 273.15
+    return Tbs
 
 def volumen_Espesifico(Ra, Tbs_k, w, patm):
     Ve = ((Ra*Tbs_k)/patm)*(1+1.6078* w)
